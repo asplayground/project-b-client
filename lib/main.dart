@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(),
       initialRoute: '/',
-      routes: {'/': (context) => const MyHomePage(), '/dev/imageToPdf': (context) => const ImageToPdf()},
+      routes: {'/': (context) => const MyHomePage(), '/dev/imageToPdf': (context) => ImageToPdf()},
     );
   }
 }
