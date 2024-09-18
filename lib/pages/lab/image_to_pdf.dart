@@ -91,10 +91,11 @@ class _ImageToPdfState extends State<ImageToPdf> {
     }
 
     // Save PDF to a file
-    final outputDir = await getTemporaryDirectory();
-    final pdfFile = File('${outputDir.path}/generated_pdf.pdf');
-    print('${outputDir.path}/generated_pdf.pdf');
+    final outputDir = await getApplicationDocumentsDirectory();
+    final pdfFile = File('${outputDir.path}/project_b_${DateTime.now().millisecondsSinceEpoch}.pdf');
     await pdfFile.writeAsBytes(await pdf.save());
+
+    // print('${outputDir.path}/generated_pdf.pdf');
 
     // Share or save the PDF
     // _shareOrSave(pdfFile.path);
