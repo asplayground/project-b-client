@@ -1,10 +1,10 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:path_provider/path_provider.dart';
-// import 'package:share_plus/share_plus.dart';
 
 class ImageToPdf extends StatefulWidget {
   const ImageToPdf({super.key});
@@ -69,7 +69,7 @@ class _ImageToPdfState extends State<ImageToPdf> {
         images = [...images, ...pickedImages];
       });
     } catch (e) {
-      print('Error picking images: $e');
+      log('Error picking images: $e');
     }
   }
 
@@ -90,15 +90,9 @@ class _ImageToPdfState extends State<ImageToPdf> {
       );
     }
 
-    // Save PDF to a file
     final outputDir = await getApplicationDocumentsDirectory();
     final pdfFile = File('${outputDir.path}/project_b_${DateTime.now().millisecondsSinceEpoch}.pdf');
     await pdfFile.writeAsBytes(await pdf.save());
-
-    // print('${outputDir.path}/generated_pdf.pdf');
-
-    // Share or save the PDF
-    // _shareOrSave(pdfFile.path);
   }
 
   void clearImg() {
@@ -106,9 +100,4 @@ class _ImageToPdfState extends State<ImageToPdf> {
       images = [];
     });
   }
-
-  // Method to share or save the generated PDF
-  // void _shareOrSave(String path) {
-  //   Share.shareFiles([path], text: 'Here is your PDF');
-  // }
 }

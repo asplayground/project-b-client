@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 class InAppFileExplorer extends StatefulWidget {
   const InAppFileExplorer({super.key});
@@ -32,7 +33,6 @@ class _InAppFileExplorerState extends State<InAppFileExplorer> {
 
   @override
   void initState() {
-    // TODO: implement initState
     listFileNames();
 
     super.initState();
@@ -54,9 +54,19 @@ class _InAppFileExplorerState extends State<InAppFileExplorer> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  fileNames[index]["name"],
-                  style: const TextStyle(fontSize: 18),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      fileNames[index]["name"],
+                      style: const TextStyle(fontSize: 18),
+                    ),
+                    GestureDetector(
+                        onTap: () {
+                          Share.shareXFiles([XFile(fileNames[index]["path"])]);
+                        },
+                        child: const Icon(Icons.share))
+                  ],
                 ),
                 Text(fileNames[index]["path"], style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w300)),
               ],
