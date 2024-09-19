@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:project_b/utils/pdf_view_agrument_class.dart';
 import 'package:share_plus/share_plus.dart';
 
 class InAppFileExplorer extends StatefulWidget {
@@ -47,29 +48,34 @@ class _InAppFileExplorerState extends State<InAppFileExplorer> {
       body: ListView.builder(
         itemCount: fileNames.length,
         itemBuilder: (context, index) {
-          return Container(
-            padding: const EdgeInsets.all(16),
-            margin: const EdgeInsets.symmetric(vertical: 4),
-            decoration: BoxDecoration(color: Colors.blue[50]),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      fileNames[index]["name"],
-                      style: const TextStyle(fontSize: 18),
-                    ),
-                    GestureDetector(
-                        onTap: () {
-                          Share.shareXFiles([XFile(fileNames[index]["path"])]);
-                        },
-                        child: const Icon(Icons.share))
-                  ],
-                ),
-                Text(fileNames[index]["path"], style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w300)),
-              ],
+          return GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, "/pdfView", arguments: PdfViewArguments(fileNames[index]["path"], fileNames[index]["name"]));
+            },
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              margin: const EdgeInsets.symmetric(vertical: 4),
+              decoration: BoxDecoration(color: Colors.blue[50]),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        fileNames[index]["name"],
+                        style: const TextStyle(fontSize: 18),
+                      ),
+                      GestureDetector(
+                          onTap: () {
+                            Share.shareXFiles([XFile(fileNames[index]["path"])]);
+                          },
+                          child: const Icon(Icons.share))
+                    ],
+                  ),
+                  Text(fileNames[index]["path"], style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w300)),
+                ],
+              ),
             ),
           );
         },

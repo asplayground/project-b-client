@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_b/pages/custom_pdf_viewer.dart';
 import 'package:project_b/pages/lab/image_to_pdf.dart';
 import 'package:project_b/pages/lab/in_app_file_explorer.dart';
 
@@ -16,8 +17,9 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const MyHomePage(),
-        '/dev/imageToPdf': (context) => ImageToPdf(),
-        '/dev/fileExplorer': (context) => InAppFileExplorer(),
+        '/dev/imageToPdf': (context) => const ImageToPdf(),
+        '/dev/fileExplorer': (context) => const InAppFileExplorer(),
+        '/pdfView': (context) => const CustomPdfViewer()
       },
     );
   }
