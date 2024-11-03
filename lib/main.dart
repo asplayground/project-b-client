@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_b/pages/custom_pdf_viewer.dart';
 import 'package:project_b/pages/home.dart';
+import 'package:project_b/pages/lab/doc_scanner.dart';
 import 'package:project_b/pages/lab/image_to_pdf.dart';
 import 'package:project_b/pages/lab/in_app_file_explorer.dart';
 
@@ -21,7 +22,8 @@ class MyApp extends StatelessWidget {
         '/dev/imageToPdf': (context) => const ImageToPdf(),
         '/dev/fileExplorer': (context) => const InAppFileExplorer(),
         '/pdfView': (context) => const CustomPdfViewer(),
-        '/home': (context) => const HomeScreen()
+        '/home': (context) => const HomeScreen(),
+        '/scanner': (context) => const DocScanner()
       },
     );
   }
@@ -80,6 +82,14 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                     Navigator.pushNamed(context, "/home");
                   },
                   child: const Text("Home screen")),
+              const SizedBox(
+                height: 8,
+              ),
+              OutlinedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/scanner");
+                  },
+                  child: const Text("Test module 3 (scanner)")),
             ],
           ),
         ));
